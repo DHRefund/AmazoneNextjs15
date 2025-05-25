@@ -2,6 +2,15 @@ import { HelpCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata() {
+  const t = await getTranslations("Checkout");
+  return {
+    title: t("meta_title"), // Example: "Thanh toán - Tên cửa hàng của bạn"
+    description: t("meta_description"), // Example: "Hoàn tất đơn hàng của bạn tại Tên cửa hàng của bạn."
+  };
+}
 
 export default function CheckoutLayout({ children }: { children: React.ReactNode }) {
   return (

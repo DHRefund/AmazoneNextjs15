@@ -2,6 +2,15 @@ import { getSetting } from "@/lib/actions/setting.actions";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata() {
+  const t = await getTranslations("Auth");
+  return {
+    title: t("meta_title"), // Example: "Xác thực - Tên cửa hàng của bạn"
+    description: t("meta_description"), // Example: "Đăng nhập hoặc đăng ký tài khoản tại Tên cửa hàng của bạn."
+  };
+}
 
 export default async function AuthLayout({ children }: { children: React.ReactNode }) {
   const { site } = await getSetting();
